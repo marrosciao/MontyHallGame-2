@@ -27,7 +27,7 @@ public class MontyHallGame
 		int car = (int) (Math.random() * 3 +1);
 		
 		//testing
-		System.out.println("car = " + car);
+		//System.out.println("car = " + car);
 		
 		System.out.print("Please choose a door (1,2, or 3): ");
 
@@ -40,38 +40,70 @@ public class MontyHallGame
 		
 		
 		
-		int reveal = doorToReveal(car,userChoice);
+		int reveal = doorToRevealRandom(car,userChoice);
 	
 	
 		System.out.println("There is nothing behind door " + reveal);
 		
 		int doorSwitch = doorToSwitch(reveal,userChoice);
-		System.out.println("Would you like to switch to door " + doorSwitch);
+		System.out.print("Would you like to switch to door " + doorSwitch + "? If so type yes: ");
+	
+	
+		String switchChoice = kb.nextLine();
+		if (switchChoice.equals("yes"))
+		{
+			userChoice = doorSwitch;
+			System.out.println("Your new door is " + userChoice);
+		}
+		
+		if (userChoice == car)
+		{
+			System.out.println("Congratulations! You won the car");
+		}
+		
+		else
+		{
+			System.out.println("Congratulations! You won a goat. The car was behind door " + car + ".");
+		}
 		
 	}
 
 	public static int doorToReveal(int c, int u)
 	{
 		int count = 1;
-		int doorToReveal = 1;
+		int reveal = 1;
 		while (count <= 3)
 		{
-			if ((doorToReveal == c)||(doorToReveal == u))
+			if ((reveal == c)||(reveal == u))
 			{
-				doorToReveal ++;
+				reveal ++;
 			}
 			count++;
 			
 		}
 		
 
-		System.out.println("Door to reveal is " + doorToReveal);
-		return doorToReveal;
+		System.out.println("Door to reveal is " + reveal);
+		return reveal;
 		
 	}
 	
-
+	public static int doorToRevealRandom(int c, int u)
+		/**
+		*This function chooses a door to reveal randomly
+		*The function then checks to see if the door is the users choice or the door with the car
+		*If it is either, then the program comes up with a different number
+		*This is better than the other doorTo Reveal function because it chooses a number randomly
+		*/
 	
+		{
+		int r = (int) (Math.random()*3+1);
+		while (r == c || r == u)
+		{
+			r = (int) (Math.random()*3+1);
+		}
+		return r;
+	}
 	public static int doorToSwitch(int reveal, int userChoice)
 	{
 		int count = 1;
@@ -87,7 +119,7 @@ public class MontyHallGame
 		}
 		
 
-		System.out.println("Door to switch is " + doorToSwitch);
+		//System.out.println("Door to switch is " + doorToSwitch);
 		return doorToSwitch;
 	
 	}
