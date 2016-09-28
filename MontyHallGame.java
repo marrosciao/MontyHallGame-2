@@ -1,3 +1,8 @@
+/**
+* Monty Hall Game
+* @author Neil
+* @version 1.0
+*/
 import java.util.Scanner;
 
 public class MontyHallGame
