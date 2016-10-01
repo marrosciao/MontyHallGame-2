@@ -16,7 +16,10 @@ public class MontyHallGame
 	}
 	
 	
-	
+	/**
+	* This function has no arguments
+	* This function just prints a welcome message and explanation for the game
+	*/
 	public static void welcome()
 	{
 		System.out.println("Welcome to the Monty Hall Game");
@@ -26,14 +29,18 @@ public class MontyHallGame
 	}
 	
 	
+	/**
+	* This function has no arguments
+	* This function generates a random door for the car
+	* Then the function asks the user to choose a door
+	* The function then reveals a door and asks the user to switch
+	* At the end the function determines if the user wins or loses
+	*/
 	public static void game()
 	{
 		Scanner kb = new Scanner(System.in);
 		int car = (int) (Math.random() * 3 +1);
-		
-		//testing
-		//System.out.println("car = " + car);
-		
+	
 		System.out.print("Please choose a door (1,2, or 3): ");
 
 		int userChoice = kb.nextInt();
@@ -73,6 +80,15 @@ public class MontyHallGame
 		
 	}
 
+
+	/**
+	*@param - int c - the door with the car
+	*@param - int u - the door for the users choice
+	*This function chooses a door to reveal
+	*It does this by going through 1-3 and finding the lowest number that the car and user pick are not
+	*The program returns the door to be revealed
+	*@return - int reveal - the door to be revealed
+	*/
 	public static int doorToReveal(int c, int u)
 	{
 		int count = 1;
@@ -93,15 +109,19 @@ public class MontyHallGame
 		
 	}
 	
-	public static int doorToRevealRandom(int c, int u)
-		/**
-		*This function chooses a door to reveal randomly
-		*The function then checks to see if the door is the users choice or the door with the car
-		*If it is either, then the program comes up with a different number
-		*This is better than the other doorTo Reveal function because it chooses a number randomly
-		*/
 	
-		{
+	
+	/**
+	*@param - int c - the door with the car
+	*@param - int u - the door for the users choice	
+	*This function chooses a door to reveal randomly
+	*The function then checks to see if the door is the users choice or the door with the car
+	*If it is either, then the program comes up with a different number
+	*This is better than the other doorTo Reveal function because it chooses a number randomly
+	*@return - int reveal - the door to be revealed
+	*/
+	public static int doorToRevealRandom(int c, int u)
+	{
 		int r = (int) (Math.random()*3+1);
 		while (r == c || r == u)
 		{
@@ -109,6 +129,17 @@ public class MontyHallGame
 		}
 		return r;
 	}
+	
+	
+	
+	/**
+	*@param - int reveal - the door revealed to contain nothing
+	*@param - int userChoice - the door of the user choice
+	*This function takes in 2 integers: the door that was revealed to contain nothing, and the door of the user choice
+	*This function figures out what door the program should ask the user to switch to
+	*It does this by choosing the number that the user did not pick and the door that was not revealed
+	*@return - int doorToSwitch - the door that the user can switch to
+	*/
 	public static int doorToSwitch(int reveal, int userChoice)
 	{
 		int count = 1;
